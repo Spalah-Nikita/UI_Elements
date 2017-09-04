@@ -7,114 +7,153 @@
 //
 
 #import "ViewController.h"
+#import "ValidationModel.h"
 
-static const NSString *kName = @"ram";
-static CGFloat const kValue = 3.0f;
+@interface ViewController () <UITextFieldDelegate>
 
-typedef struct
-{
-    CGFloat weight;
-    NSUInteger age;
-} Person;
-
-@interface ViewController () <UITextFieldDelegate, UITextViewDelegate>
-
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UITextField *firsNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
+@property (weak, nonatomic) IBOutlet UITextField *phoneNumberTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UITextField *confirmPasswordTextField;
+
+@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *infoLabelTopConstraint;
+
+@property (nonatomic, assign) NSInteger currentSelectedTextFieldIndex;
 
 @end
 
 @implementation ViewController
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
+- (void)keyboardDidShow:(NSNotification*)notification
 {
-    NSString *someString = @"I will be iOS Developer";
+    self.contentViewTopConstraint.constant = 0.0f;
     
-    NSRange range = NSMakeRange(2, 4);
+    // этот метод вызывается, когда клавиатура уже полностью видна на экране
+    // и мы можем здесь изменить позицию contentView на столько, на сколько нам нужно
+    NSValue *value = [notification.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardFrame = [value CGRectValue];
     
-    NSString *resultStirng = [someString substringWithRange:range];
-    NSLog(@"%@", resultStirng);
+    //  находим текущий TextField
+    UITextField *selectedTextField = [self arrayOfTextFields][self.currentSelectedTextFieldIndex];
     
+    // обновляем позицию всего контента, если необходимо
+    self.contentViewTopConstraint.constant = [self yPositionForTextFieldFrame:selectedTextField.frame keyboardYPosition:keyboardFrame.origin.y];
     
-    Person person;
-    
-    person.age = 20;
-    person.weight = 76;
-    
-    if (textField.tag == 5)
-    {
-        CGRect fieldFrame = textField.frame;
-        
-        fieldFrame.origin.y =  self.emailTextField.frame.origin.y + self.emailTextField.frame.size.height + 40;
-        
-        textField.frame = fieldFrame;
-    }
-    
-    NSLog(@"\ntextFieldDidBeginEditing\n");
-    
-    if (textField.tag == 5)
-    {
-        textField.secureTextEntry = YES;
-    }
-    
+    // обновляем позицию лейбла
+    self.infoLabelTopConstraint.constant = self.contentViewTopConstraint.constant;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
+- (void)keyboardDidHide:(NSNotification*)notification
 {
-    NSLog(@"\ntextFieldDidEndEditing\n");
+    // этот метод вызывается, когда клавиатура уже полностью убрана с экрана
+    // и мы возвращаем contentView на исходную позицию
+    self.contentViewTopConstraint.constant = 0.0f;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.currentSelectedTextFieldIndex = textField.tag;
+    self.infoLabel.text = @"";
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    NSLog(@"\ntextFieldShouldReturn\n");
+    BOOL isTextValid = [ValidationModel isTextValid:textField.text forTextFieldType:textField.tag];
     
-    if (textField.tag == 5)
+    if (isTextValid == NO)
     {
-        [self.emailTextField becomeFirstResponder];
-    }
-    else
-    {
-        [self.passwordTextField becomeFirstResponder];
-    }
-    
-    return YES;
-}
-
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
-{
-    NSLog(@"\ntextFieldShouldEndEditing\n");
-    if (textField.text.length < 5)
-    {
-        return NO;
-    }
-    return YES;
-}
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
-    NSLog(@"\ntextFieldShouldBeginEditing\n");
-//    if (textField.tag == 5 && self.emailTextField.text.length < 5)
-//    {
-//        return NO;
-//    }
-    return YES;
-}
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    NSLog(@"\nshouldChangeCharactersInRange\n");
-    
-    if ([string isEqualToString:@"+"])
-    {
+        self.infoLabel.text = @"Invalid text";
+        self.infoLabelTopConstraint.constant = textField.frame.origin.y + textField.frame.size.height;
         return NO;
     }
     
+    if (isTextValid && textField.tag == ConfirmPasswordTextFieldType)
+    {
+        isTextValid = [ValidationModel confirmPassword:self.confirmPasswordTextField.text isEqualToPassword:self.passwordTextField.text];
+        
+        if (isTextValid == NO)
+        {
+            self.infoLabel.text = @"Wrong Confirm Password";
+            self.infoLabelTopConstraint.constant = textField.frame.origin.y + textField.frame.size.height;
+            return NO;
+        }
+    }
+    
+    if (isTextValid)
+    {
+        UITextField *nextTextField = [self nextTextFieldBySelectedIndex:textField.tag];
+        
+        if (nextTextField == nil)
+        {
+            [textField resignFirstResponder];
+        }
+        else
+        {
+            [nextTextField becomeFirstResponder];
+        }
+        
+        self.currentSelectedTextFieldIndex = textField.tag;
+    }
+    
     return YES;
 }
 
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+#pragma mark - Private Methods
+
+- (UITextField *)nextTextFieldBySelectedIndex:(NSInteger)selectedIndex
 {
-    return YES;
+    NSArray *textFieldsArray = [self arrayOfTextFields];
+    
+    UITextField *nextTextField = nil;
+    NSInteger nextTextFieldIndex = [ValidationModel nextTextFieldIndexByIndex:selectedIndex];
+    
+    for (NSInteger i = 0; i < textFieldsArray.count; i++)
+    {
+        UITextField *currentTextField = textFieldsArray[nextTextFieldIndex];
+        
+        if (currentTextField.text.length == 0)
+        {
+            nextTextField = currentTextField;
+            break;
+        }
+    }
+    
+    if (nextTextFieldIndex == 0)
+    {
+        self.contentViewTopConstraint.constant = 0.0f;
+    }
+    
+    return nextTextField;
+}
+
+- (NSArray *)arrayOfTextFields
+{
+    return @[self.firsNameTextField,
+             self.lastNameTextField,
+             self.emailTextField,
+             self.phoneNumberTextField,
+             self.passwordTextField,
+             self.confirmPasswordTextField];
+}
+
+- (CGFloat)yPositionForTextFieldFrame:(CGRect)frame keyboardYPosition:(CGFloat)keyboardY
+{
+    CGFloat resultY = 0.0f;
+    
+    CGFloat textFieldY = frame.origin.y;
+    CGFloat textFieldHeight = frame.size.height;
+
+    if ((textFieldY + textFieldHeight) > keyboardY)
+    {
+        resultY = fabs(keyboardY - (textFieldY + textFieldHeight));
+    }
+    
+    return -textFieldY;
 }
 
 @end

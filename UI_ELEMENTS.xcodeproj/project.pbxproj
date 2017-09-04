@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A1775181F5B7EBA00631C6E /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1775171F5B7EBA00631C6E /* BaseViewController.m */; };
+		1A17751B1F5B860700631C6E /* ValidationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A17751A1F5B860700631C6E /* ValidationModel.m */; };
 		1AF8D3991F59BD16001E7096 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF8D3981F59BD16001E7096 /* main.m */; };
 		1AF8D39C1F59BD16001E7096 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF8D39B1F59BD16001E7096 /* AppDelegate.m */; };
 		1AF8D39F1F59BD16001E7096 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF8D39E1F59BD16001E7096 /* ViewController.m */; };
@@ -16,6 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A1775161F5B7EBA00631C6E /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		1A1775171F5B7EBA00631C6E /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		1A1775191F5B860700631C6E /* ValidationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidationModel.h; sourceTree = "<group>"; };
+		1A17751A1F5B860700631C6E /* ValidationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidationModel.m; sourceTree = "<group>"; };
 		1AF8D3941F59BD16001E7096 /* UI_ELEMENTS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UI_ELEMENTS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AF8D3981F59BD16001E7096 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1AF8D39A1F59BD16001E7096 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -67,6 +73,10 @@
 				1AF8D3A51F59BD16001E7096 /* LaunchScreen.storyboard */,
 				1AF8D3A81F59BD16001E7096 /* Info.plist */,
 				1AF8D3971F59BD16001E7096 /* Supporting Files */,
+				1A1775161F5B7EBA00631C6E /* BaseViewController.h */,
+				1A1775171F5B7EBA00631C6E /* BaseViewController.m */,
+				1A1775191F5B860700631C6E /* ValidationModel.h */,
+				1A17751A1F5B860700631C6E /* ValidationModel.m */,
 			);
 			path = UI_ELEMENTS;
 			sourceTree = "<group>";
@@ -152,6 +162,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AF8D39F1F59BD16001E7096 /* ViewController.m in Sources */,
+				1A1775181F5B7EBA00631C6E /* BaseViewController.m in Sources */,
+				1A17751B1F5B860700631C6E /* ValidationModel.m in Sources */,
 				1AF8D39C1F59BD16001E7096 /* AppDelegate.m in Sources */,
 				1AF8D3991F59BD16001E7096 /* main.m in Sources */,
 			);
@@ -312,6 +324,7 @@
 				1AF8D3AD1F59BD16001E7096 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
