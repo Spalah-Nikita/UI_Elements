@@ -14,5 +14,10 @@
 
 @implementation ViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.navigationItem.title = self.titleVC;
+}
 
 @end
