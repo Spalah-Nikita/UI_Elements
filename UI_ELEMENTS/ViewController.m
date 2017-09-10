@@ -10,6 +10,9 @@
 
 @interface ViewController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *coffeeImageView;
+@property (weak, nonatomic) IBOutlet UITextView *coffeeDescriptionTextView;
+
 @end
 
 @implementation ViewController
@@ -17,7 +20,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = self.titleVC;
+    
+    if (self.coffee)
+    {
+        self.navigationItem.title = self.coffee.name;
+        self.coffeeDescriptionTextView.text = self.coffee.descriptionText;
+        
+        if (self.coffee.image)
+        {
+            self.coffeeImageView.image = self.coffee.image;
+        }
+    }
 }
 
 @end

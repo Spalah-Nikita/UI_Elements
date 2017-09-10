@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1A19CBBD1F62FC2F00289B34 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A19CBBC1F62FC2F00289B34 /* TableViewController.m */; };
+		1A1B7CDE1F65497C00D148BE /* Coffee.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1B7CDD1F65497C00D148BE /* Coffee.m */; };
+		1A1B7CE91F654C8F00D148BE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1A1B7CEB1F654C8F00D148BE /* Localizable.strings */; };
 		1AF8D3991F59BD16001E7096 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF8D3981F59BD16001E7096 /* main.m */; };
 		1AF8D39C1F59BD16001E7096 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF8D39B1F59BD16001E7096 /* AppDelegate.m */; };
 		1AF8D39F1F59BD16001E7096 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF8D39E1F59BD16001E7096 /* ViewController.m */; };
@@ -19,6 +21,13 @@
 /* Begin PBXFileReference section */
 		1A19CBBB1F62FC2F00289B34 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		1A19CBBC1F62FC2F00289B34 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		1A1B7CDC1F65497C00D148BE /* Coffee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coffee.h; sourceTree = "<group>"; };
+		1A1B7CDD1F65497C00D148BE /* Coffee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coffee.m; sourceTree = "<group>"; };
+		1A1B7CE31F654B7B00D148BE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		1A1B7CE41F654B7B00D148BE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		1A1B7CEA1F654C8F00D148BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1A1B7CEC1F654C9400D148BE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1A1B7CED1F654C9500D148BE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1AF8D3941F59BD16001E7096 /* UI_ELEMENTS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UI_ELEMENTS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AF8D3981F59BD16001E7096 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1AF8D39A1F59BD16001E7096 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -72,6 +81,9 @@
 				1AF8D3971F59BD16001E7096 /* Supporting Files */,
 				1A19CBBB1F62FC2F00289B34 /* TableViewController.h */,
 				1A19CBBC1F62FC2F00289B34 /* TableViewController.m */,
+				1A1B7CDC1F65497C00D148BE /* Coffee.h */,
+				1A1B7CDD1F65497C00D148BE /* Coffee.m */,
+				1A1B7CEB1F654C8F00D148BE /* Localizable.strings */,
 			);
 			path = UI_ELEMENTS;
 			sourceTree = "<group>";
@@ -127,6 +139,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 1AF8D38B1F59BD16001E7096;
 			productRefGroup = 1AF8D3951F59BD16001E7096 /* Products */;
@@ -144,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AF8D3A71F59BD16001E7096 /* LaunchScreen.storyboard in Resources */,
+				1A1B7CE91F654C8F00D148BE /* Localizable.strings in Resources */,
 				1AF8D3A41F59BD16001E7096 /* Assets.xcassets in Resources */,
 				1AF8D3A21F59BD16001E7096 /* Main.storyboard in Resources */,
 			);
@@ -156,6 +170,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A1B7CDE1F65497C00D148BE /* Coffee.m in Sources */,
 				1AF8D39F1F59BD16001E7096 /* ViewController.m in Sources */,
 				1AF8D39C1F59BD16001E7096 /* AppDelegate.m in Sources */,
 				1AF8D3991F59BD16001E7096 /* main.m in Sources */,
@@ -166,10 +181,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		1A1B7CEB1F654C8F00D148BE /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A1B7CEA1F654C8F00D148BE /* Base */,
+				1A1B7CEC1F654C9400D148BE /* en */,
+				1A1B7CED1F654C9500D148BE /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		1AF8D3A01F59BD16001E7096 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				1AF8D3A11F59BD16001E7096 /* Base */,
+				1A1B7CE31F654B7B00D148BE /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -178,6 +204,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				1AF8D3A61F59BD16001E7096 /* Base */,
+				1A1B7CE41F654B7B00D148BE /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -189,6 +216,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -237,6 +265,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
